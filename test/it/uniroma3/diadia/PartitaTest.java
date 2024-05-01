@@ -14,8 +14,8 @@ public class PartitaTest {
 		p1 = new Partita();
 		p2 = new Partita();
 		p3 = new Partita();
-		p2.labirinto.setStanzaCorrente(p2.labirinto.getUscita());
-		p3.giocatore.setCfu(0);
+		p2.getLabirinto().setStanzaCorrente(p2.getLabirinto().getUscita());
+		p3.getGiocatore().setCfu(0);
 	}
 	
 	@Test

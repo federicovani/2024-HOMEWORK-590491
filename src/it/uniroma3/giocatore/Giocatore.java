@@ -7,12 +7,15 @@ public class Giocatore {
 	static final private int CFU_INIZIALI = 20;
 	
 	private int cfu;
-	
-	public Borsa borsa;
+	private Borsa borsa;
 	
 	public Giocatore() {
 		this.cfu = CFU_INIZIALI;
 		borsa = new Borsa();
+	}
+	
+	public boolean isVivo() {
+		return cfu > 0;
 	}
 
 	public int getCfu() {
@@ -21,6 +24,10 @@ public class Giocatore {
 	
 	public void setCfu(int cfu) {
 		this.cfu = cfu;
+	}
+	
+	public Borsa getBorsa() {
+		return this.borsa;
 	}
 	
 	static public int getCfuIniziali() {
