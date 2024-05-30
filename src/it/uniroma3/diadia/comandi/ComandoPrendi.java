@@ -31,7 +31,7 @@ public class ComandoPrendi extends AbstractComando{
 		
 		if(partita.getGiocatore().getBorsa().addAttrezzo(attrezzoCercato)) {
 			partita.getLabirinto().getStanzaCorrente().removeAttrezzo(attrezzoCercato);
-			io.mostraMessaggio("Attrezzo preso");
+			io.mostraMessaggio("Attrezzo preso.");
 		} else io.mostraMessaggio("Non è stato possibile prendere l'attrezzo.");
 		
 	}
