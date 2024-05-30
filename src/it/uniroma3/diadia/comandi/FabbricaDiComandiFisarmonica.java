@@ -19,6 +19,7 @@ import it.uniroma3.diadia.IO;
 public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi{
 	
 	private IO io;
+	
 	public FabbricaDiComandiFisarmonica(IO io) {
 		this.io = io;
 	}

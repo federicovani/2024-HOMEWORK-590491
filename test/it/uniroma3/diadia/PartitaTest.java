@@ -5,47 +5,56 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
+
 public class PartitaTest {
 
-	private Partita p1, p2, p3;
+	private Partita p;
+	private Labirinto labirinto;
 	
 	@Before
 	public void setUp() {
-		p1 = new Partita();
-		p2 = new Partita();
-		p3 = new Partita();
-		p2.getLabirinto().setStanzaCorrente(p2.getLabirinto().getStanzaVincente());
-		p3.getGiocatore().setCfu(0);
+		labirinto = new LabirintoBuilder()
+				.addStanzaIniziale("Atrio")
+				.addAttrezzo("martello", 3)
+				.addStanzaVincente("Biblioteca")
+				.addAdiacenza("Atrio", "Biblioteca", "nord")
+				.addAdiacenza("Biblioteca", "Atrio", "sud")
+				.getLabirinto();
+		p = new Partita(labirinto);
 	}
 	
 	@Test
 	public void testSetFinita() {
-		assertFalse(p1.isFinita());
-		p1.setFinita();
-		assertTrue(p1.isFinita());
+		assertFalse(p.isFinita());
+		p.setFinita();
+		assertTrue(p.isFinita());
 	}
 	
 	@Test
 	public void testVinta() {
-		assertFalse(p1.vinta());
+		assertFalse(p.vinta());
 	}
 	
 	@Test
 	public void testVintaUscitaRaggiunta() {
-		/*P2 è una partita in cui il giocatore ha raggiunto l'uscita*/
-		assertTrue(p2.vinta());
+		p.getLabirinto().setStanzaCorrente(p.getLabirinto().getStanzaVincente());
+		/*In questa partita il giocatore ha raggiunto l'uscita*/
+		assertTrue(p.vinta());
 	}
 	
 	@Test
 	public void testIsFinita() {
-		/*P1 è una partita appena cominciata*/
-		assertFalse(p1.isFinita());
+		/*Questa partita è appena cominciata*/
+		assertFalse(p.isFinita());
 	}
 	
 	@Test
 	public void testIsFinita0Cfu() {
-		/*In p3 il giocatore non possiede più alcun CFU*/
-		assertTrue(p3.isFinita());
+		p.getGiocatore().setCfu(0);
+		/*In questa partita il giocatore non possiede più alcun CFU*/
+		assertTrue(p.isFinita());
 	}
 
 }

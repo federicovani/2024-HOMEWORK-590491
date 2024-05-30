@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.personaggi.Personaggio;
 
 public class LabirintoBuilder {
 	
@@ -35,7 +36,6 @@ public class LabirintoBuilder {
 	
 	public LabirintoBuilder addStanza(String nomeStanza) {
 		Stanza stanza = new Stanza(nomeStanza);
-		labirinto.setStanzaCorrente(stanza);
 		stanze.put(nomeStanza, stanza);
 		this.setUltimaStanza(stanza);
 		return this;
@@ -43,7 +43,6 @@ public class LabirintoBuilder {
 	
 	public LabirintoBuilder addStanzaMagica(String nomeStanza, int sogliaMagica) {
 		Stanza stanzaMagica = new StanzaMagica(nomeStanza, sogliaMagica);
-		labirinto.setStanzaCorrente(stanzaMagica);
 		stanze.put(nomeStanza, stanzaMagica);
 		this.setUltimaStanza(stanzaMagica);
 		return this;
@@ -51,7 +50,6 @@ public class LabirintoBuilder {
 	
 	public LabirintoBuilder addStanzaBloccata(String nomeStanza, String direzione, String attrezzo) {
 		Stanza stanzaBloccata = new StanzaBloccata(nomeStanza, direzione, attrezzo);
-		labirinto.setStanzaCorrente(stanzaBloccata);
 		stanze.put(nomeStanza, stanzaBloccata);
 		this.setUltimaStanza(stanzaBloccata);
 		return this;
@@ -59,7 +57,6 @@ public class LabirintoBuilder {
 	
 	public LabirintoBuilder addStanzaBuia(String nomeStanza, String attrezzo) {
 		Stanza stanzaBuia = new StanzaBuia(nomeStanza, attrezzo);
-		labirinto.setStanzaCorrente(stanzaBuia);
 		stanze.put(nomeStanza, stanzaBuia);
 		this.setUltimaStanza(stanzaBuia);
 		return this;
@@ -68,6 +65,11 @@ public class LabirintoBuilder {
 	public LabirintoBuilder addAttrezzo(String nome, int peso) {
 		Attrezzo attrezzo = new Attrezzo(nome, peso);
 		this.ultimaStanza.addAttrezzo(attrezzo);
+		return this;
+	}
+	
+	public LabirintoBuilder setPersonaggio(Personaggio personaggio) {
+		this.ultimaStanza.setPersonaggio(personaggio);
 		return this;
 	}
 	

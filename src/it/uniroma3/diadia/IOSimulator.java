@@ -2,6 +2,9 @@ package it.uniroma3.diadia;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,15 +14,15 @@ public class IOSimulator implements IO{
 	private List<String> comandiLetti;
 	private String rigaAttuale;
 	private Map<String, List<String>> comando2messaggi;
-	//private List<String> messaggi;
 	private int indiceComandi;
 	private int indiceMessaggi;
 	
 	public IOSimulator (List<String> comandiDaLeggere) {
 		this.comandiDaLeggere = comandiDaLeggere;
-		this.comandiLetti = new ArrayList<String>();
+		this.comandiLetti = new LinkedList<String>();
 		this.rigaAttuale = "introduzione";
-		this.comando2messaggi = new HashMap<String, List<String>>();
+		this.comandiLetti.add(rigaAttuale);
+		this.comando2messaggi = new LinkedHashMap<String, List<String>>();
 		this.indiceComandi = 0;
 		this.indiceMessaggi = 0;
 	}
@@ -33,6 +36,7 @@ public class IOSimulator implements IO{
 		else
 			messaggi = new ArrayList<String>();
 		messaggi.add(messaggio);
+		
 		comando2messaggi.put(comando, messaggi);
 	}
 
@@ -51,7 +55,7 @@ public class IOSimulator implements IO{
 		List<String> messaggi = this.comando2messaggi.get(this.comandiLetti.get(this.indiceComandi));
 		String messaggio = messaggi.get(this.indiceMessaggi);
 		this.indiceMessaggi++;
-		if(this.indiceMessaggi > messaggi.size()) {
+		if(this.indiceMessaggi >= messaggi.size()) {
 			indiceComandi++;
 			indiceMessaggi = 0;
 		}
@@ -59,6 +63,19 @@ public class IOSimulator implements IO{
 	}
 	
 	public boolean hasNextMessaggio() {
-		return indiceComandi <= comandiLetti.size();
+		return indiceComandi < comandiLetti.size();
+	}
+	
+	public void debug() {
+		System.out.println("\n------------\n");
+		for (Iterator<String> iterator = comando2messaggi.keySet().iterator(); iterator.hasNext();) {
+			String comando = iterator.next();
+			List<String> list = comando2messaggi.get(comando);
+			for (int i = 0; i < list.size(); i++) {
+				String messaggio = list.get(i);
+				System.out.println(comando + ": " + messaggio);
+			}
+		}
+		System.out.println("\n------------\n");
 	}
 }

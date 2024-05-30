@@ -3,6 +3,7 @@ package it.uniroma3.diadia;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.fixture.Fixture;
 import it.uniroma3.diadia.giocatore.Giocatore;
 
 /**
@@ -21,7 +22,7 @@ public class Partita {
 	private Giocatore giocatore;
 	
 	public Partita(){
-		labirinto = new Labirinto();
+		labirinto = Fixture.creaLabirintoEasy();
 		giocatore = new Giocatore();
 		this.finita = false;
 	}
@@ -37,7 +38,7 @@ public class Partita {
 	 * @return vero se partita vinta
 	 */
 	public boolean vinta() {
-		return labirinto.getStanzaCorrente() == labirinto.getStanzaVincente();
+		return this.labirinto.getStanzaCorrente() == this.labirinto.getStanzaVincente();
 	}
 
 	/**
@@ -45,7 +46,7 @@ public class Partita {
 	 * @return vero se partita finita
 	 */
 	public boolean isFinita() {
-		return finita || vinta() || giocatore.getCfu() == 0;
+		return this.finita || this.vinta() || this.giocatore.getCfu() == 0;
 	}
 
 	/**

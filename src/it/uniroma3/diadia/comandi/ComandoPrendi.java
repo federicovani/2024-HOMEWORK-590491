@@ -1,6 +1,5 @@
 package it.uniroma3.diadia.comandi;
 
-import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -11,22 +10,20 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * Altrimenti manda un messaggio di errore.
  */
 
-public class ComandoPrendi implements Comando{
+public class ComandoPrendi extends AbstractComando{
 	
 	static final private String NOME = "prendi";
-	private String attrezzo;
-	private IO io;
 		
 	@Override
 	public void esegui(Partita partita) {
 		
-		if(attrezzo==null) {
+		if(super.getParametro()==null) {
 			io.mostraMessaggio("Che attrezzo vuoi prendere?");
 			return;
 		}
 		
 		Attrezzo attrezzoCercato = null;
-		attrezzoCercato = partita.getLabirinto().getStanzaCorrente().getAttrezzo(attrezzo);
+		attrezzoCercato = partita.getLabirinto().getStanzaCorrente().getAttrezzo(super.getParametro());
 		if(attrezzoCercato == null) {
 			io.mostraMessaggio("Attrezzo inesistente");
 			return;
@@ -40,23 +37,8 @@ public class ComandoPrendi implements Comando{
 	}
 	
 	@Override
-	public void setParametro(String parametro) {
-		this.attrezzo = parametro;
-	}
-	
-	@Override
 	public String getNome() {
 		return ComandoPrendi.NOME;
-	}
-	
-	@Override
-	public String getParametro() {
-		return attrezzo;
-	}
-	
-	@Override
-	public void setIO(IO io) {
-		this.io = io;
 	}
 
 }

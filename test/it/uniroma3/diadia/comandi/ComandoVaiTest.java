@@ -14,31 +14,57 @@ import it.uniroma3.diadia.fixture.Fixture;
 
 public class ComandoVaiTest {
 	
-	List<String> comandiDaLeggere;
+	List<String> righeDaLeggere;
 	
 	@Before
 	public void setUp() {
-		comandiDaLeggere = new ArrayList<String>();
-	}
-
-	@Test
-	public void testVaiMonolocale() {
-		comandiDaLeggere.add("vai nord");
-		IOSimulator io = Fixture.creaSimulazioneBilocaleSemplice(comandiDaLeggere);
-		assertTrue(io.hasNextMessaggio());
-		assertEquals(io.nextMessaggio(), "laboratorio");
-		assertTrue(io.hasNextMessaggio());
-		assertEquals(io.nextMessaggio(), "Hai vinto!");
+		righeDaLeggere = new ArrayList<String>();
 	}
 	
 	@Test
-	public void testVaiTrilocale() {
-		comandiDaLeggere.add("vai ovest");
-		IOSimulator io = Fixture.creaSimulazioneTrilocaleSempliceConAttrezzi(comandiDaLeggere);
-		assertTrue(io.hasNextMessaggio());
-		assertEquals(io.nextMessaggio(), "biblioteca");
-		//assertTrue(io.hasNextMessaggio());
-		//assertEquals(io.nextMessaggio(), "Hai vinto!");
-	}
+	public void testPartitaConComandoVai() {
+		righeDaLeggere.add("vai nord");
 
+		IOSimulator io = Fixture.creaSimulazionePartitaEGiocaEasy(righeDaLeggere);
+		
+		assertTrue(io.hasNextMessaggio());
+		assertEquals(DiaDia.MESSAGGIO_BENVENUTO, io.nextMessaggio());
+		assertTrue(io.hasNextMessaggio());
+		assertEquals("Biblioteca", io.nextMessaggio());
+		assertTrue(io.hasNextMessaggio());
+		assertEquals("Hai vinto!", io.nextMessaggio());
+	}
+	
+	@Test
+	public void testPartitaConComandoVaiOvest() {
+		righeDaLeggere.add("vai ovest");
+		righeDaLeggere.add("fine");
+
+		IOSimulator io = Fixture.creaSimulazionePartitaEGiocaHard(righeDaLeggere);
+		
+		assertTrue(io.hasNextMessaggio());
+		assertEquals(DiaDia.MESSAGGIO_BENVENUTO, io.nextMessaggio());
+		assertTrue(io.hasNextMessaggio());
+		assertEquals("Studio", io.nextMessaggio());
+		assertTrue(io.hasNextMessaggio());
+		assertEquals(ComandoFine.MESSAGGIO_FINE, io.nextMessaggio());
+	}
+	
+	@Test
+	public void testPartitaConComandoVaiOvestEst() {
+		righeDaLeggere.add("vai ovest");
+		righeDaLeggere.add("vai est");
+		righeDaLeggere.add("fine");
+
+		IOSimulator io = Fixture.creaSimulazionePartitaEGiocaHard(righeDaLeggere);
+		
+		assertTrue(io.hasNextMessaggio());
+		assertEquals(DiaDia.MESSAGGIO_BENVENUTO, io.nextMessaggio());
+		assertTrue(io.hasNextMessaggio());
+		assertEquals("Studio", io.nextMessaggio());
+		assertTrue(io.hasNextMessaggio());
+		assertEquals("Atrio", io.nextMessaggio());
+		assertTrue(io.hasNextMessaggio());
+		assertEquals(ComandoFine.MESSAGGIO_FINE, io.nextMessaggio());
+	}
 }

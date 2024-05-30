@@ -21,14 +21,14 @@ public class StanzaBloccata extends Stanza{
 	@Override
 	public Stanza getStanzaAdiacente(String dir) {
 		if(dir==direzioneBloccata)
-			if(!super.hasAttrezzo(attrezzoPerSbloccare)) return this;
+			if(!super.hasAttrezzo(this.attrezzoPerSbloccare)) return this;
 		return super.getStanzaAdiacente(dir);
 	}
 	
 	@Override
 	public String getDescrizione() {
-		String messaggio = "\n Questa stanza è bloccata. \n"
-    			+ "Per andare a " + direzioneBloccata + " è necessario posare un " + attrezzoPerSbloccare;
+		String messaggio = "\n\n Questa stanza è bloccata. \n"
+    			+ " Per andare a " + direzioneBloccata + " è necessario posare l'attrezzo: " + attrezzoPerSbloccare + "\n";
     	return super.toString() + messaggio;
 	}
 

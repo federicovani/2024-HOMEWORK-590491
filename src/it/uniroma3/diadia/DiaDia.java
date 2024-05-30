@@ -18,7 +18,7 @@ import it.uniroma3.diadia.comandi.*;
 
 public class DiaDia {
 
-	static final private String MESSAGGIO_BENVENUTO = ""+
+	public static final String MESSAGGIO_BENVENUTO = ""+
 			"Ti trovi nell'Universita', ma oggi e' diversa dal solito...\n" +
 			"Meglio andare al piu' presto in biblioteca a studiare. Ma dov'e'?\n"+
 			"I locali sono popolati da strani personaggi, " +
@@ -59,7 +59,7 @@ public class DiaDia {
 	private boolean processaIstruzione(String istruzione) {
 		
 		Comando comandoDaEseguire;
-		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica(io);
+		FabbricaDiComandi factory = new FabbricaDiComandiRiflessiva(io);
 		comandoDaEseguire = factory.costruisciComando(istruzione);
 		comandoDaEseguire.esegui(this.partita);
 		if (this.partita.vinta())
@@ -77,12 +77,15 @@ public class DiaDia {
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")
 				.addAdiacenza("Atrio", "Biblioteca", "nord")
+				.addAdiacenza("Biblioteca", "Atrio", "sud")
+				.addStanza("Bagno")
+				.addAdiacenza("Bagno", "Atrio", "sud")
+				.addAdiacenza("Atrio", "Bagno", "nord")
+				.addStanza("Studio")
+				.addAdiacenza("Atrio", "Studio", "ovest")
+				.addAdiacenza("Studio", "Atrio", "est")
 				.getLabirinto();
 		DiaDia gioco = new DiaDia(io, labirinto);
 		gioco.gioca();
-	}
-	
-	public static final String getMessaggioBenvenuto() {
-		return MESSAGGIO_BENVENUTO;
 	}
 }
