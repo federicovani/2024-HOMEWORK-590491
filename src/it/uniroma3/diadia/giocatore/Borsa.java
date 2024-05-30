@@ -13,7 +13,6 @@ import java.util.TreeSet;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.attrezzi.ComparatoreAttrezziPerPeso;
-import it.uniroma3.diadia.giocatore.Borsa;
 
 public class Borsa {
 	

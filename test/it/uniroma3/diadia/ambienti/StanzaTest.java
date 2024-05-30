@@ -1,13 +1,15 @@
 package it.uniroma3.diadia.ambienti;
 
-import static org.junit.Assert.*;
-
-import org.junit.Test;
-
-import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.attrezzi.Attrezzo;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
+import org.junit.Test;
+
+import it.uniroma3.diadia.Direzione;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class StanzaTest {
 	
@@ -22,7 +24,7 @@ public class StanzaTest {
 		this.s1 = new Stanza("S1");
 		this.s2 = new Stanza("S2");
 		this.s3 = new Stanza("S3");
-		s3.impostaStanzaAdiacente("sud", s2);
+		s3.impostaStanzaAdiacente(Direzione.SUD, s2);
 		this.a1 = new Attrezzo("Spada", 10);
 		s3.addAttrezzo(new Attrezzo("1", 1));
 		s3.addAttrezzo(new Attrezzo("2", 1));
@@ -41,21 +43,21 @@ public class StanzaTest {
 	}
 	@Test
 	public void testImpostaStanzaAdiacenteNuovaStanza() {
-		assertNull(s1.getStanzaAdiacente("sud"));
-		s1.impostaStanzaAdiacente("sud", s2);
-		assertEquals(s2, s1.getStanzaAdiacente("sud"));
+		assertNull(s1.getStanzaAdiacente(Direzione.SUD));
+		s1.impostaStanzaAdiacente(Direzione.SUD, s2);
+		assertEquals(s2, s1.getStanzaAdiacente(Direzione.SUD));
 	}
 	
 	@Test
 	public void testImpostaStanzaAdiacenteSostituisciStanza() {
-		assertEquals(s2, s3.getStanzaAdiacente("sud"));
-		s3.impostaStanzaAdiacente("sud", s1);
-		assertEquals(s1, s3.getStanzaAdiacente("sud"));
+		assertEquals(s2, s3.getStanzaAdiacente(Direzione.SUD));
+		s3.impostaStanzaAdiacente(Direzione.SUD, s1);
+		assertEquals(s1, s3.getStanzaAdiacente(Direzione.SUD));
 	}
 	
 	public void testImpostaStanzaAdiacenteStanzaNulla() {
-		s1.impostaStanzaAdiacente("sud", null);
-		assertNull(s1.getStanzaAdiacente("sud"));
+		s1.impostaStanzaAdiacente(Direzione.SUD, null);
+		assertNull(s1.getStanzaAdiacente(Direzione.SUD));
 	}
 	
 	@Test

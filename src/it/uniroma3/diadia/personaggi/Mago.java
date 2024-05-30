@@ -29,4 +29,13 @@ public class Mago extends Personaggio{
 		
 		return msg;
 	}
+
+	@Override
+	public String riceviRegalo(Attrezzo attrezzo, Partita partita) {
+		String msg;
+		attrezzo.setPeso(attrezzo.getPeso()/2);
+		partita.getLabirinto().getStanzaCorrente().addAttrezzo(attrezzo);
+		msg = "Ti ringrazio per questo dono, ma non ne ho bisogno! Per ringraziarti ne ho dimezzato il peso.";
+		return msg;
+	}
 }

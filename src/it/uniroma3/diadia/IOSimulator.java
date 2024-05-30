@@ -1,12 +1,13 @@
 package it.uniroma3.diadia;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import it.uniroma3.diadia.comandi.ComandoFine;
 
 public class IOSimulator implements IO{
 	
@@ -42,9 +43,19 @@ public class IOSimulator implements IO{
 
 	@Override
 	public String leggiRiga() {
-		this.rigaAttuale = this.comandiDaLeggere.remove(0);
-		comandiLetti.add(rigaAttuale);
-		return this.getRigaAttuale();
+		try {
+			if(this.rigaAttuale == this.comandiDaLeggere.get(0)) {
+				this.comandiDaLeggere.remove(0);
+				return this.getRigaAttuale();
+			}
+			this.rigaAttuale = this.comandiDaLeggere.remove(0);
+			comandiLetti.add(rigaAttuale);
+			return this.getRigaAttuale();
+		} catch(Exception e) { //Se non si lancia manualmente il comando fine il metodo lanciava un OutOfBoundException che faceva fallire i test.
+			this.rigaAttuale = "fine";
+			this.mostraMessaggio(ComandoFine.MESSAGGIO_FINE);
+			return this.getRigaAttuale();
+		}
 	}
 	
 	public String getRigaAttuale() {

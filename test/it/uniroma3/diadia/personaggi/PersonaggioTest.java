@@ -1,13 +1,11 @@
 package it.uniroma3.diadia.personaggi;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import it.uniroma3.diadia.Partita;
-import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.fixture.Fixture;
 
 public class PersonaggioTest {
 	

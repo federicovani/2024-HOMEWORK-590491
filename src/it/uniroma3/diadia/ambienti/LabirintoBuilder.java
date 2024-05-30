@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.uniroma3.diadia.Direzione;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.personaggi.Personaggio;
 
@@ -48,7 +49,7 @@ public class LabirintoBuilder {
 		return this;
 	}
 	
-	public LabirintoBuilder addStanzaBloccata(String nomeStanza, String direzione, String attrezzo) {
+	public LabirintoBuilder addStanzaBloccata(String nomeStanza, Direzione direzione, String attrezzo) {
 		Stanza stanzaBloccata = new StanzaBloccata(nomeStanza, direzione, attrezzo);
 		stanze.put(nomeStanza, stanzaBloccata);
 		this.setUltimaStanza(stanzaBloccata);
@@ -73,10 +74,11 @@ public class LabirintoBuilder {
 		return this;
 	}
 	
-	public LabirintoBuilder addAdiacenza(String s1, String s2, String direzione) {
+	public LabirintoBuilder addAdiacenza(String s1, String s2, Direzione direzione) {
 		Stanza stanza1 = getListaStanze().get(s1);
 		Stanza stanza2 = getListaStanze().get(s2);
 		stanza1.impostaStanzaAdiacente(direzione, stanza2);
+		stanza2.impostaStanzaAdiacente(direzione.opposta(), stanza1);
 		return this;
 	}
 	

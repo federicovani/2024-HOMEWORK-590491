@@ -32,7 +32,9 @@ public class FabbricaDiComandiRiflessiva implements FabbricaDiComandi{
 			comando.setIO(io);
 		} catch (Exception e) {
 			comando = new ComandoNonValido();
-			this.io.mostraMessaggio("Comando inesistente");
+			comando.setIO(io);
+		} finally {
+			if (scannerDiParole!=null) scannerDiParole.close();
 		}
 		return comando;
 	}

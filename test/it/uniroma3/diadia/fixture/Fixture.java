@@ -3,11 +3,15 @@ package it.uniroma3.diadia.fixture;
 import java.util.List;
 
 import it.uniroma3.diadia.DiaDia;
+import it.uniroma3.diadia.Direzione;
 import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.personaggi.Cane;
+import it.uniroma3.diadia.personaggi.Mago;
+import it.uniroma3.diadia.personaggi.Strega;
 
 
 public class Fixture {
@@ -17,8 +21,7 @@ public class Fixture {
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", "nord")
-				.addAdiacenza("Biblioteca", "Atrio", "sud")
+				.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
 				.getLabirinto();
 		DiaDia gioco = new DiaDia(io, labirinto);
 		gioco.gioca();
@@ -30,8 +33,7 @@ public class Fixture {
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", "nord")
-				.addAdiacenza("Biblioteca", "Atrio", "sud")
+				.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
 				.getLabirinto();
 		return labirinto;
 	}
@@ -42,14 +44,11 @@ public class Fixture {
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", "nord")
-				.addAdiacenza("Biblioteca", "Atrio", "sud")
+				.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
 				.addStanza("Bagno")
-				.addAdiacenza("Bagno", "Atrio", "sud")
-				.addAdiacenza("Atrio", "Bagno", "nord")
+				.addAdiacenza("Bagno", "Atrio", Direzione.SUD)
 				.addStanza("Studio")
-				.addAdiacenza("Atrio", "Studio", "ovest")
-				.addAdiacenza("Studio", "Atrio", "est")
+				.addAdiacenza("Atrio", "Studio", Direzione.OVEST)
 				.getLabirinto();
 		DiaDia gioco = new DiaDia(io, labirinto);
 		gioco.gioca();
@@ -61,17 +60,14 @@ public class Fixture {
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", "nord")
-				.addAdiacenza("Biblioteca", "Atrio", "sud")
+				.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
 				.addStanza("Bagno")
-				.addAdiacenza("Bagno", "Atrio", "sud")
-				.addAdiacenza("Atrio", "Bagno", "nord")
+				.addAdiacenza("Bagno", "Atrio", Direzione.SUD)
 				.addStanza("Studio")
-				.addAdiacenza("Atrio", "Studio", "ovest")
-				.addAdiacenza("Studio", "Atrio", "est")
+				.addAdiacenza("Atrio", "Studio", Direzione.OVEST)
 				.getLabirinto();
 		return labirinto;
-	}
+	}	
 
 	public static IOSimulator creaSimulazionePartitaEGiocaMonolocale(List<String> comandiDaLeggere) {
 		IOSimulator io = new IOSimulator(comandiDaLeggere);
@@ -91,7 +87,7 @@ public class Fixture {
 				.addStanzaIniziale("salotto")
 				.addStanzaVincente("camera")
 				.addAttrezzo("letto",10) // dove? fa riferimento all’ultima stanza aggiunta
-				.addAdiacenza("salotto", "camera", "nord") // camera si trova a nord di salotto
+				.addAdiacenza("salotto", "camera", Direzione.NORD) // camera si trova a nord di salotto
 				.getLabirinto();
 		DiaDia gioco = new DiaDia(io, bilocale);
 		gioco.gioca();
@@ -105,10 +101,55 @@ public class Fixture {
 				.addStanza("cucina")
 				.addAttrezzo("pentola",1) // dove? fa riferimento all’ultima stanza aggiunta
 				.addStanzaVincente("camera")
-				.addAdiacenza("salotto", "cucina", "nord")
-				.addAdiacenza("cucina", "camera", "est")
+				.addAdiacenza("salotto", "cucina", Direzione.NORD)
+				.addAdiacenza("cucina", "camera", Direzione.EST)
 				.getLabirinto();
 		DiaDia gioco = new DiaDia(io, trilocale);
+		gioco.gioca();
+		return io;
+	}
+	
+	public static IOSimulator creaSimulazionePartitaConStrega(List<String> comandiDaLeggere) {
+		IOSimulator io = new IOSimulator(comandiDaLeggere);
+		Labirinto trilocale = new LabirintoBuilder()
+				.addStanzaIniziale("salotto").addAttrezzo("bastone", 1)
+				.addStanza("cucina").setPersonaggio(new Strega("Strega", "Ciao"))
+				.addStanzaVincente("camera").addAttrezzo("osso", 1).addAttrezzo("pistola", 1)
+				.addAdiacenza("salotto", "cucina", Direzione.NORD)
+				.addAdiacenza("cucina", "camera", Direzione.EST)
+				.getLabirinto();
+		DiaDia gioco = new DiaDia(io, trilocale);
+		gioco.gioca();
+		return io;
+	}
+	
+	public static IOSimulator creaSimulazionePartitaConStregaStessoNumeroAttrezzi(List<String> comandiDaLeggere) {
+		IOSimulator io = new IOSimulator(comandiDaLeggere);
+		Labirinto trilocale = new LabirintoBuilder()
+				.addStanzaIniziale("salotto").addAttrezzo("bastone", 1)
+				.addStanza("cucina").setPersonaggio(new Strega("Strega", "Ciao"))
+				.addStanzaVincente("camera").addAttrezzo("osso", 1)
+				.addAdiacenza("salotto", "cucina", Direzione.NORD)
+				.addAdiacenza("cucina", "camera", Direzione.EST)
+				.getLabirinto();
+		DiaDia gioco = new DiaDia(io, trilocale);
+		gioco.gioca();
+		return io;
+	}
+	
+	public static IOSimulator creaSimulazionePartitaConPersonaggi(List<String> comandiDaLeggere) {
+		IOSimulator io = new IOSimulator(comandiDaLeggere);
+		Labirinto labirinto = new LabirintoBuilder()
+				.addStanzaIniziale("Atrio")
+				.addAttrezzo("martello", 3)
+				.addStanzaVincente("Biblioteca")
+				.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
+				.addStanza("Bagno").setPersonaggio(new Cane("Fuffi", "bau!", new Attrezzo("bastone", 2)))
+				.addAdiacenza("Bagno", "Atrio", Direzione.SUD)
+				.addStanza("Studio").setPersonaggio(new Mago("Merlino", "Sono in grado di leggere i cuori e capire i veri desideri delle persone.", new Attrezzo("bacchetta", 1)))
+				.addAdiacenza("Atrio", "Studio", Direzione.OVEST)
+				.getLabirinto();
+		DiaDia gioco = new DiaDia(io, labirinto);
 		gioco.gioca();
 		return io;
 	}

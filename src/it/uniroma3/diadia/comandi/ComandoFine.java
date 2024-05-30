@@ -5,7 +5,7 @@ import it.uniroma3.diadia.Partita;
 public class ComandoFine extends AbstractComando{
 	
 	static final private String NOME = "fine";
-	static final String MESSAGGIO_FINE = "Grazie di aver giocato!";
+	public static final String MESSAGGIO_FINE = "Grazie di aver giocato!";
 	
 	@Override
 	public void esegui(Partita partita) {
