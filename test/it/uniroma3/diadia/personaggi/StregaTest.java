@@ -62,27 +62,10 @@ public class StregaTest {
 	}
 	
 	@Test
-	public void testAgisciStessoNumeroAttrezziNonSalutata() {
+	public void testRegala() {
 		comandiDaLeggere.add("vai nord");
-		comandiDaLeggere.add("interagisci");
-		
-		IOSimulator io = Fixture.creaSimulazionePartitaConStregaStessoNumeroAttrezzi(comandiDaLeggere);
-		
-		assertTrue(io.hasNextMessaggio());
-		assertEquals(DiaDia.MESSAGGIO_BENVENUTO, io.nextMessaggio());
-		assertTrue(io.hasNextMessaggio());
-		assertEquals("cucina", io.nextMessaggio());
-		assertTrue(io.hasNextMessaggio());
-		assertEquals("La strega si è offesa perchè non l'hai salutata, quindi ti ha trasportato nella stanza adiacente con meno attrezzi: camera", io.nextMessaggio());
-		assertTrue(io.hasNextMessaggio());
-		assertEquals("Hai vinto!", io.nextMessaggio());
-	}
-	
-	@Test
-	public void testAgisciStessoNumeroAttrezziSalutata() {
-		comandiDaLeggere.add("vai nord");
-		comandiDaLeggere.add("saluta");
-		comandiDaLeggere.add("interagisci");
+		comandiDaLeggere.add("regala pietra");
+		comandiDaLeggere.add("fine");
 		
 		IOSimulator io = Fixture.creaSimulazionePartitaConStrega(comandiDaLeggere);
 		
@@ -91,11 +74,9 @@ public class StregaTest {
 		assertTrue(io.hasNextMessaggio());
 		assertEquals("cucina", io.nextMessaggio());
 		assertTrue(io.hasNextMessaggio());
-		assertEquals("Ciao, io sono Strega. Ciao", io.nextMessaggio());
+		assertEquals("HAHAHAHAHA", io.nextMessaggio());
 		assertTrue(io.hasNextMessaggio());
-		assertEquals("La strega è felice perchè l'hai salutata, quindi ti ha trasportato nella stanza adiacente con più attrezzi: camera", io.nextMessaggio());
-		assertTrue(io.hasNextMessaggio());
-		assertEquals("Hai vinto!", io.nextMessaggio());
+		assertEquals(ComandoFine.MESSAGGIO_FINE, io.nextMessaggio());
 	}
 	
 

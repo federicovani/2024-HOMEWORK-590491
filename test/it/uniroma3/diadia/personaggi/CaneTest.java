@@ -24,7 +24,7 @@ public class CaneTest {
 	}
 	
 	@Test
-	public void test() {
+	public void testInteragisci() {
 		comandiDaLeggere.add("vai nord");
 		comandiDaLeggere.add("saluta");
 		comandiDaLeggere.add("interagisci");
@@ -40,6 +40,42 @@ public class CaneTest {
 		assertEquals("bau!", io.nextMessaggio());
 		assertTrue(io.hasNextMessaggio());
 		assertEquals("Il cane si è innervosito e ti ha morso, facendoti perdere un CFU, te ne rimangono 18", io.nextMessaggio());
+		assertTrue(io.hasNextMessaggio());
+		assertEquals(ComandoFine.MESSAGGIO_FINE, io.nextMessaggio());
+	}
+	
+	@Test
+	public void testRegalaCiboPreferito() {
+		comandiDaLeggere.add("vai nord");
+		comandiDaLeggere.add("regala croccantini");
+		comandiDaLeggere.add("fine");
+		
+		IOSimulator io = Fixture.creaSimulazionePartitaConPersonaggi(comandiDaLeggere);
+		
+		assertTrue(io.hasNextMessaggio());
+		assertEquals(DiaDia.MESSAGGIO_BENVENUTO, io.nextMessaggio());
+		assertTrue(io.hasNextMessaggio());
+		assertEquals("Bagno", io.nextMessaggio());
+		assertTrue(io.hasNextMessaggio());
+		assertEquals("Il cane accetta volentieri questo cibo e in cambio lascia a terra un attrezzo: bastone", io.nextMessaggio());
+		assertTrue(io.hasNextMessaggio());
+		assertEquals(ComandoFine.MESSAGGIO_FINE, io.nextMessaggio());
+	}
+	
+	@Test
+	public void testRegalaCiboRandom() {
+		comandiDaLeggere.add("vai nord");
+		comandiDaLeggere.add("regala pistola");
+		comandiDaLeggere.add("fine");
+		
+		IOSimulator io = Fixture.creaSimulazionePartitaConPersonaggi(comandiDaLeggere);
+		
+		assertTrue(io.hasNextMessaggio());
+		assertEquals(DiaDia.MESSAGGIO_BENVENUTO, io.nextMessaggio());
+		assertTrue(io.hasNextMessaggio());
+		assertEquals("Bagno", io.nextMessaggio());
+		assertTrue(io.hasNextMessaggio());
+		assertEquals("Il cane non ha gradito questo alimento e ti ha morso, facendoti perdere un CFU. CFU rimasti: 18", io.nextMessaggio());
 		assertTrue(io.hasNextMessaggio());
 		assertEquals(ComandoFine.MESSAGGIO_FINE, io.nextMessaggio());
 	}

@@ -12,7 +12,7 @@ public class ComandoAiuto extends AbstractComando{
 	
 	@Override
 	public void esegui(Partita partita) {
-	// TODO
+		
 	}
 	
 	@Override

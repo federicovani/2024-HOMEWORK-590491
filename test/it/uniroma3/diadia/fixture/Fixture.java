@@ -113,7 +113,7 @@ public class Fixture {
 		IOSimulator io = new IOSimulator(comandiDaLeggere);
 		Labirinto trilocale = new LabirintoBuilder()
 				.addStanzaIniziale("salotto").addAttrezzo("bastone", 1)
-				.addStanza("cucina").setPersonaggio(new Strega("Strega", "Ciao"))
+				.addStanza("cucina").setPersonaggio(new Strega("Strega", "Ciao")).addAttrezzo("pietra", 5)
 				.addStanzaVincente("camera").addAttrezzo("osso", 1).addAttrezzo("pistola", 1)
 				.addAdiacenza("salotto", "cucina", Direzione.NORD)
 				.addAdiacenza("cucina", "camera", Direzione.EST)
@@ -144,9 +144,9 @@ public class Fixture {
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")
 				.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
-				.addStanza("Bagno").setPersonaggio(new Cane("Fuffi", "bau!", new Attrezzo("bastone", 2)))
+				.addStanza("Bagno").setPersonaggio(new Cane("Fuffi", "bau!", new Attrezzo("bastone", 2))).addAttrezzo("croccantini", 1).addAttrezzo("pistola", 1)
 				.addAdiacenza("Bagno", "Atrio", Direzione.SUD)
-				.addStanza("Studio").setPersonaggio(new Mago("Merlino", "Sono in grado di leggere i cuori e capire i veri desideri delle persone.", new Attrezzo("bacchetta", 1)))
+				.addStanza("Studio").setPersonaggio(new Mago("Merlino", "Sono in grado di leggere i cuori e capire i veri desideri delle persone.", new Attrezzo("bacchetta", 1))).addAttrezzo("libro", 4)
 				.addAdiacenza("Atrio", "Studio", Direzione.OVEST)
 				.getLabirinto();
 		DiaDia gioco = new DiaDia(io, labirinto);
