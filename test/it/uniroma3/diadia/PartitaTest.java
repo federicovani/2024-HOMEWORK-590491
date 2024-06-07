@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 
 public class PartitaTest {
 
@@ -16,7 +15,7 @@ public class PartitaTest {
 	
 	@Before
 	public void setUp() {
-		labirinto = new LabirintoBuilder()
+		labirinto = Labirinto.newBuilder()
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")

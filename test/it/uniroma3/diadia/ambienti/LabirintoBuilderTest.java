@@ -16,13 +16,13 @@ import it.uniroma3.diadia.Direzione;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class LabirintoBuilderTest {
-	private LabirintoBuilder labirintoBuilder;
+	private it.uniroma3.diadia.ambienti.Labirinto.LabirintoBuilder labirintoBuilder;
 	private String nomeStanzaIniziale = "Atrio";
 	private String nomeStanzaVincente = "Uscita";
 
 	@Before
 	public void setUp() throws Exception {
-		labirintoBuilder = new LabirintoBuilder();
+		labirintoBuilder = Labirinto.newBuilder();
 	}
 
 	@Test

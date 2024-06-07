@@ -6,7 +6,6 @@ import it.uniroma3.diadia.DiaDia;
 import it.uniroma3.diadia.Direzione;
 import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.personaggi.Cane;
@@ -17,7 +16,7 @@ import it.uniroma3.diadia.personaggi.Strega;
 public class Fixture {
 	public static IOSimulator creaSimulazionePartitaEGiocaEasy(List<String> comandiDaLeggere) {
 		IOSimulator io = new IOSimulator(comandiDaLeggere);
-		Labirinto labirinto = new LabirintoBuilder()
+		Labirinto labirinto = Labirinto.newBuilder()
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")
@@ -29,7 +28,7 @@ public class Fixture {
 	}
 	
 	public static Labirinto creaLabirintoEasy() {
-		Labirinto labirinto = new LabirintoBuilder()
+		Labirinto labirinto = Labirinto.newBuilder()
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")
@@ -40,7 +39,7 @@ public class Fixture {
 
 	public static IOSimulator creaSimulazionePartitaEGiocaHard(List<String> comandiDaLeggere) {
 		IOSimulator io = new IOSimulator(comandiDaLeggere);
-		Labirinto labirinto = new LabirintoBuilder()
+		Labirinto labirinto = Labirinto.newBuilder()
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")
@@ -56,7 +55,7 @@ public class Fixture {
 	}
 	
 	public static Labirinto creaLabirintoHard() {
-		Labirinto labirinto = new LabirintoBuilder()
+		Labirinto labirinto = Labirinto.newBuilder()
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")
@@ -71,7 +70,7 @@ public class Fixture {
 
 	public static IOSimulator creaSimulazionePartitaEGiocaMonolocale(List<String> comandiDaLeggere) {
 		IOSimulator io = new IOSimulator(comandiDaLeggere);
-		Labirinto monolocale = new LabirintoBuilder()
+		Labirinto monolocale = Labirinto.newBuilder()
 				.addStanzaIniziale("salotto") 
 				.addStanzaVincente("salotto") 
 				.getLabirinto();
@@ -83,7 +82,7 @@ public class Fixture {
 	
 	public static IOSimulator creaSimulazionePartitaEGiocaBilocale(List<String> comandiDaLeggere) {
 		IOSimulator io = new IOSimulator(comandiDaLeggere);
-		Labirinto bilocale = new LabirintoBuilder()
+		Labirinto bilocale = Labirinto.newBuilder()
 				.addStanzaIniziale("salotto")
 				.addStanzaVincente("camera")
 				.addAttrezzo("letto",10) // dove? fa riferimento all’ultima stanza aggiunta
@@ -96,7 +95,7 @@ public class Fixture {
 	
 	public static IOSimulator creaSimulazionePartitaEGiocaTrilocale(List<String> comandiDaLeggere) {
 		IOSimulator io = new IOSimulator(comandiDaLeggere);
-		Labirinto trilocale = new LabirintoBuilder()
+		Labirinto trilocale = Labirinto.newBuilder()
 				.addStanzaIniziale("salotto")
 				.addStanza("cucina")
 				.addAttrezzo("pentola",1) // dove? fa riferimento all’ultima stanza aggiunta
@@ -111,7 +110,7 @@ public class Fixture {
 	
 	public static IOSimulator creaSimulazionePartitaConStrega(List<String> comandiDaLeggere) {
 		IOSimulator io = new IOSimulator(comandiDaLeggere);
-		Labirinto trilocale = new LabirintoBuilder()
+		Labirinto trilocale = Labirinto.newBuilder()
 				.addStanzaIniziale("salotto").addAttrezzo("bastone", 1)
 				.addStanza("cucina").setPersonaggio(new Strega("Strega", "Ciao")).addAttrezzo("pietra", 5)
 				.addStanzaVincente("camera").addAttrezzo("osso", 1).addAttrezzo("pistola", 1)
@@ -125,7 +124,7 @@ public class Fixture {
 	
 	public static IOSimulator creaSimulazionePartitaConStregaStessoNumeroAttrezzi(List<String> comandiDaLeggere) {
 		IOSimulator io = new IOSimulator(comandiDaLeggere);
-		Labirinto trilocale = new LabirintoBuilder()
+		Labirinto trilocale = Labirinto.newBuilder()
 				.addStanzaIniziale("salotto").addAttrezzo("bastone", 1)
 				.addStanza("cucina").setPersonaggio(new Strega("Strega", "Ciao"))
 				.addStanzaVincente("camera").addAttrezzo("osso", 1)
@@ -139,7 +138,7 @@ public class Fixture {
 	
 	public static IOSimulator creaSimulazionePartitaConPersonaggi(List<String> comandiDaLeggere) {
 		IOSimulator io = new IOSimulator(comandiDaLeggere);
-		Labirinto labirinto = new LabirintoBuilder()
+		Labirinto labirinto = Labirinto.newBuilder()
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")
