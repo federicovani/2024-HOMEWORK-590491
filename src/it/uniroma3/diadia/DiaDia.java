@@ -1,10 +1,13 @@
 package it.uniroma3.diadia;
 
+import java.io.FileNotFoundException;
+
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
+import it.uniroma3.diadia.exceptions.FormatoFileNonValidoException;
 import it.uniroma3.diadia.personaggi.Cane;
 import it.uniroma3.diadia.personaggi.Mago;
 
@@ -74,21 +77,22 @@ public class DiaDia {
 		return this.partita.isFinita();
 	}   
 
-	public static void main(String[] argc) {
+	public static void main(String[] argc) throws FileNotFoundException, FormatoFileNonValidoException {
 		IO io = new IOConsole();
-		Labirinto labirinto = Labirinto.newBuilder()
-				.addStanzaIniziale("Atrio")
-				.addAttrezzo("martello", 3)
-				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
-				.addAdiacenza("Biblioteca", "Atrio", Direzione.SUD)
-				.addStanza("Bagno").setPersonaggio(new Cane("Fuffi", "bau!", new Attrezzo("bastone", 2)))
-				.addAdiacenza("Bagno", "Atrio", Direzione.NORD)
-				.addAdiacenza("Atrio", "Bagno", Direzione.SUD)
-				.addStanza("Studio").setPersonaggio(new Mago("Merlino", "Sono in grado di leggere i cuori e capire i veri desideri delle persone.", new Attrezzo("bacchetta", 1)))
-				.addAdiacenza("Atrio", "Studio", Direzione.OVEST)
-				.addAdiacenza("Studio", "Atrio", Direzione.EST)
-				.getLabirinto();
+//		Labirinto labirinto = Labirinto.newBuilder()
+//				.addStanzaIniziale("Atrio")
+//				.addAttrezzo("martello", 3)
+//				.addStanzaVincente("Biblioteca")
+//				.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
+//				.addAdiacenza("Biblioteca", "Atrio", Direzione.SUD)
+//				.addStanza("Bagno").setPersonaggio(new Cane("Fuffi", "bau!", new Attrezzo("bastone", 2)))
+//				.addAdiacenza("Bagno", "Atrio", Direzione.NORD)
+//				.addAdiacenza("Atrio", "Bagno", Direzione.SUD)
+//				.addStanza("Studio").setPersonaggio(new Mago("Merlino", "Sono in grado di leggere i cuori e capire i veri desideri delle persone.", new Attrezzo("bacchetta", 1)))
+//				.addAdiacenza("Atrio", "Studio", Direzione.OVEST)
+//				.addAdiacenza("Studio", "Atrio", Direzione.EST)
+//				.getLabirinto();
+		Labirinto labirinto = new Labirinto("labirintoTest2.txt");
 		DiaDia gioco = new DiaDia(io, labirinto);
 		gioco.gioca();
 	}

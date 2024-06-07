@@ -20,7 +20,7 @@ public class Labirinto {
 	public Labirinto(String nomeFile) throws FormatoFileNonValidoException, FileNotFoundException {
 		CaricatoreLabirinto c =	new CaricatoreLabirinto(nomeFile);
 		c.carica();
-		this.entrata = c.getStanzaIniziale();
+		this.entrata = this.stanzaCorrente = c.getStanzaIniziale();
 		this.uscita = c.getStanzaVincente();
 	}
 	

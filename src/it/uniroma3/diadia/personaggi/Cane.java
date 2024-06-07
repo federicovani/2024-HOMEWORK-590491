@@ -35,7 +35,7 @@ public class Cane extends Personaggio{
 	@Override
 	public String riceviRegalo(Attrezzo attrezzo, Partita partita) {
 		String msg;
-		if(attrezzo.getNome() == this.ciboPreferito) {
+		if(attrezzo.getNome().equals(this.ciboPreferito)) {
 			partita.getLabirinto().getStanzaCorrente().addAttrezzo(attrezzoDaLasciare);
 			msg = "Il cane accetta volentieri questo cibo e in cambio lascia a terra un attrezzo: " + attrezzoDaLasciare.getNome();
 		}
@@ -44,6 +44,10 @@ public class Cane extends Personaggio{
 			msg = "Il cane non ha gradito questo alimento e ti ha morso, facendoti perdere un CFU. CFU rimasti: " + partita.getGiocatore().getCfu();
 		}
 		return msg;
+	}
+	
+	public String getCiboPreferito() {
+		return this.ciboPreferito;
 	}
 
 }

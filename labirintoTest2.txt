@@ -1,0 +1,11 @@
+Stanze: biblioteca, N10, N11, giardino
+Stanze Buie: scantinato torcia
+Stanze Bloccate: garage nord chiave
+Stanze Magiche: rettorato
+Inizio: N10
+Vincente: N11
+Attrezzi: martello 10 biblioteca, torcia 2 N10, chiave 1 N10, carne 4 garage
+Maghi: N10 Merlino osso 1 Sono Mago Merlino
+Streghe: biblioteca Matilda Creo pozioni
+Cani: giardino Artù ramo 1 carne bau!
+Uscite: biblioteca nord N10, biblioteca sud N11, N10 est scantinato, N10 ovest garage, garage nord giardino, N10 nord rettorato

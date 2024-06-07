@@ -58,7 +58,10 @@ public class Stanza {
      * @param stanza stanza adiacente nella direzione indicata dal primo parametro.
      */
     public void impostaStanzaAdiacente(Direzione direzione, Stanza stanza) {
-        if(direzione != null && stanza != null && stanzeAdiacenti.size() < 4) stanzeAdiacenti.put(direzione, stanza);
+        if(direzione != null && stanza != null && stanzeAdiacenti.size() < 4) {
+        	stanzeAdiacenti.put(direzione, stanza);
+        	stanza.getMapStanzeAdiacenti().put(direzione.opposta(), this);
+        }
     }
 
     /**
