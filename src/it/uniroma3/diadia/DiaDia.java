@@ -1,15 +1,13 @@
 package it.uniroma3.diadia;
 
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
 import it.uniroma3.diadia.exceptions.FormatoFileNonValidoException;
-import it.uniroma3.diadia.personaggi.Cane;
-import it.uniroma3.diadia.personaggi.Mago;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -78,7 +76,8 @@ public class DiaDia {
 	}   
 
 	public static void main(String[] argc) throws FileNotFoundException, FormatoFileNonValidoException {
-		IO io = new IOConsole();
+		Scanner scanner = new Scanner(System.in);
+		IO io = new IOConsole(scanner);
 //		Labirinto labirinto = Labirinto.newBuilder()
 //				.addStanzaIniziale("Atrio")
 //				.addAttrezzo("martello", 3)
@@ -92,8 +91,9 @@ public class DiaDia {
 //				.addAdiacenza("Atrio", "Studio", Direzione.OVEST)
 //				.addAdiacenza("Studio", "Atrio", Direzione.EST)
 //				.getLabirinto();
-		Labirinto labirinto = new Labirinto("labirintoTest2.txt");
+		Labirinto labirinto = Labirinto.newBuilder("labirintoTest2.txt").getLabirinto();
 		DiaDia gioco = new DiaDia(io, labirinto);
 		gioco.gioca();
+		scanner.close();
 	}
 }

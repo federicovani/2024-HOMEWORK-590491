@@ -17,14 +17,14 @@ public class Labirinto {
 	private Stanza stanzaCorrente;
 	private Stanza uscita;
 	
-	public Labirinto(String nomeFile) throws FormatoFileNonValidoException, FileNotFoundException {
+	private Labirinto(String nomeFile) throws FormatoFileNonValidoException, FileNotFoundException {
 		CaricatoreLabirinto c =	new CaricatoreLabirinto(nomeFile);
 		c.carica();
 		this.entrata = this.stanzaCorrente = c.getStanzaIniziale();
 		this.uscita = c.getStanzaVincente();
 	}
 	
-	public Labirinto() {}
+	private Labirinto() {}
 	
 	public static LabirintoBuilder newBuilder() {
 		return new LabirintoBuilder();

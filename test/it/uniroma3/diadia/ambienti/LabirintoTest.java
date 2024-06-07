@@ -12,7 +12,7 @@ public class LabirintoTest {
 	
 	@Before
 	public void setUp() {
-		l1 = new Labirinto();
+		l1 = Labirinto.newBuilder().getLabirinto();
 		s1 = new Stanza("s1");
 	}
 	

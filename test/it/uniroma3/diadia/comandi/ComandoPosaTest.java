@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,12 +25,14 @@ public class ComandoPosaTest {
 	Partita p;
 	Comando comando;
 	IO io;
+	Scanner scanner;
 	
 	@Before
 	public void setUp() {
 		comandiDaLeggere = new ArrayList<String>();
+		scanner = new Scanner(System.in);
 		p = new Partita();
-		io = new IOConsole();
+		io = new IOConsole(scanner);
 		comando = new ComandoPosa();
 		comando.setIO(io);
 		comando.setParametro("osso");

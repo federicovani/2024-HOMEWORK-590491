@@ -1,5 +1,11 @@
 Stanze: biblioteca, N10, N11
+Stanze Buie: 
+Stanze Bloccate: 
+Stanze Magiche: 
 Inizio: N10
 Vincente: N11
 Attrezzi: martello 10 biblioteca, pinza 2 N10
+Maghi: 
+Streghe: 
+Cani: 
 Uscite: biblioteca nord N10, biblioteca sud N11

@@ -2,6 +2,8 @@ package it.uniroma3.diadia.comandi;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Scanner;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,9 +14,11 @@ public class FabbricaDiComandiFisarmonicaTest {
 	
 	private FabbricaDiComandi factory;
 	private IO io;
+	Scanner scanner;
 	@Before
 	public void setUp() {
-		io = new IOConsole();
+		scanner = new Scanner(System.in);
+		io = new IOConsole(scanner);
 		factory = new FabbricaDiComandiFisarmonica(io);
 	}
 	

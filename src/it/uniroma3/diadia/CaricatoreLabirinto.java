@@ -75,7 +75,8 @@ public class CaricatoreLabirinto {
 
 	public CaricatoreLabirinto(String nomeFile) throws FileNotFoundException {
 		this.nome2stanza = new HashMap<String,Stanza>();
-		this.reader = new LineNumberReader(new FileReader(nomeFile));
+		String file = ClassLoader.getSystemResource(nomeFile).getFile();
+		this.reader = new LineNumberReader(new FileReader(file));
 	}
 
 	public void carica() throws FormatoFileNonValidoException {
